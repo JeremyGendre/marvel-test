@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {useLocation} from 'react-router-dom';
 import useScroll from "../../helpers/hooks/useScroll";
 
+// on définit ici nos liens présents dans le header
 const links = [
     {path: '', title: 'Home'},
     {path: '/characters', title: 'Characters'},
@@ -16,6 +17,7 @@ export default function Header(){
     const [activeLink, setActiveLink] = useState('');
     const location = useLocation();
 
+    // récupère le lien actif et update le state
     const checkLocation = (newLocation: {pathname: string}) => {
         let newActiveLink = '';
         for (let i = 0; i < links.length; i++){
@@ -27,6 +29,7 @@ export default function Header(){
         setActiveLink(newActiveLink);
     };
 
+    // au changement dans l'url, on update le lien actif
     useEffect(() => {checkLocation(location)}, [location]);
 
     return (

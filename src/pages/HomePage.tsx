@@ -52,7 +52,7 @@ interface RowProps {
 function Row ({children, title, link}: PropsWithChildren<RowProps>){
     return (
         <div>
-            <div><span className="text-2xl">{title} | </span> <Link to={link} className="text-md text-yellow-400 transition duration-150 hover:underline">see more →</Link></div>
+            <div><span className="text-2xl">{title} | </span> <Link to={link} className="text-md text-red-400 transition duration-150 hover:underline">see more →</Link></div>
             <hr className="my-2"/>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                 {children}
