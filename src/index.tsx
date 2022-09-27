@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import CharactersContextProvider from "./context/CharactersContext";
+import ComicsContextProvider from "./context/ComicsContext";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -12,7 +13,9 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <CharactersContextProvider>
-                <App />
+                <ComicsContextProvider>
+                    <App />
+                </ComicsContextProvider>
             </CharactersContextProvider>
         </BrowserRouter>
     </React.StrictMode>
