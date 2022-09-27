@@ -14,7 +14,7 @@ export default function HomePage(){
     return (
         <div className="p-6 flex flex-col space-y-16">
             <Row title="Characters" link="/characters">
-                {loading ? (<Spinner/>) : (
+                {loading ? (<Spinner text="Fetching characters..."/>) : (
                     <>
                         {characters.slice(0,6).map(character => (
                             <Card key={character.id} name={character.name} thumbnail={character.thumbnail} link="/"/>
@@ -23,7 +23,7 @@ export default function HomePage(){
                 )}
             </Row>
             <Row title="Comics" link="/comics">
-                {loadingComics ? (<Spinner/>) : (
+                {loadingComics ? (<Spinner text="Fetching comics..."/>) : (
                     <>
                         {comics.slice(0,6).map(comics => (
                             <Card key={comics.id} name={comics.title} thumbnail={comics.thumbnail} link="/"/>
@@ -32,7 +32,7 @@ export default function HomePage(){
                 )}
             </Row>
             <Row title="Series" link="/series">
-                {loadingSeries ? (<Spinner/>) : (
+                {loadingSeries ? (<Spinner text="Fetching series..."/>) : (
                     <>
                         {series.slice(0,6).map(serie => (
                             <Card key={serie.id} name={serie.title} thumbnail={serie.thumbnail} link="/"/>
@@ -52,7 +52,7 @@ interface RowProps {
 function Row ({children, title, link}: PropsWithChildren<RowProps>){
     return (
         <div>
-            <div className="text-xl">{title} | <Link to={link} className="text-md text-yellow-400 hover:underline">see more →</Link></div>
+            <div><span className="text-2xl">{title} | </span> <Link to={link} className="text-md text-yellow-400 transition duration-150 hover:underline">see more →</Link></div>
             <hr className="my-2"/>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                 {children}
