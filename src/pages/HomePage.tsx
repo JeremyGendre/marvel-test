@@ -3,13 +3,17 @@ import Card from "../components/Card";
 import Spinner from "../components/Spinner";
 import {PropsWithChildren} from "react";
 import {useComics} from "../context/ComicsContext";
+import {useSeries} from "../context/SeriesContext";
+import {Link} from "react-router-dom";
 
 export default function HomePage(){
     const {characters, loading} = useCharacters();
     const {comics, loading: loadingComics} = useComics();
+    const {series, loading: loadingSeries} = useSeries();
+
     return (
-        <div className="p-6 flex flex-col space-y-8">
-            <Row title="Characters">
+        <div className="p-6 flex flex-col space-y-16">
+            <Row title="Characters" link="/characters">
                 {loading ? (<Spinner/>) : (
                     <>
                         {characters.slice(0,6).map(character => (
@@ -18,7 +22,7 @@ export default function HomePage(){
                     </>
                 )}
             </Row>
-            <Row title="Comics">
+            <Row title="Comics" link="/comics">
                 {loadingComics ? (<Spinner/>) : (
                     <>
                         {comics.slice(0,6).map(comics => (
@@ -27,15 +31,28 @@ export default function HomePage(){
                     </>
                 )}
             </Row>
-            <Row title="Series">series</Row>
+            <Row title="Series" link="/series">
+                {loadingSeries ? (<Spinner/>) : (
+                    <>
+                        {series.slice(0,6).map(serie => (
+                            <Card key={serie.id} name={serie.title} thumbnail={serie.thumbnail} link="/"/>
+                        ))}
+                    </>
+                )}
+            </Row>
         </div>
     );
 }
 
-function Row ({children, title}: PropsWithChildren<{title: string}>){
+interface RowProps {
+    title: string;
+    link: string;
+}
+
+function Row ({children, title, link}: PropsWithChildren<RowProps>){
     return (
         <div>
-            <div className="text-xl">{title}</div>
+            <div className="text-xl">{title} | <Link to={link} className="text-md text-yellow-400 hover:underline">see more →</Link></div>
             <hr className="my-2"/>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                 {children}

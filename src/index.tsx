@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import CharactersContextProvider from "./context/CharactersContext";
 import ComicsContextProvider from "./context/ComicsContext";
+import SeriesContextProvider from "./context/SeriesContext";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -14,7 +15,9 @@ root.render(
         <BrowserRouter>
             <CharactersContextProvider>
                 <ComicsContextProvider>
-                    <App />
+                    <SeriesContextProvider>
+                        <App />
+                    </SeriesContextProvider>
                 </ComicsContextProvider>
             </CharactersContextProvider>
         </BrowserRouter>
