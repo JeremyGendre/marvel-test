@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.header-link:after{
+    content:'';
+    display:block;
+    bottom: 0;
+    width: 0;
+    transition: all ease-in-out 0.15s;
+    /*background-color: white;*/
+    height: 2px;
+}
+
+.header-link:hover:after {
+    width: 100%;
+}
