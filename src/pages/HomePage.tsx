@@ -12,7 +12,7 @@ export default function HomePage(){
     const {series, loading: loadingSeries} = useSeries();
 
     return (
-        <div className="p-6 flex flex-col space-y-16">
+        <div className="flex flex-col space-y-16">
             <Row title="Characters" link="/characters">
                 {loading ? (<Spinner text="Fetching characters..."/>) : (
                     <>

@@ -21,19 +21,23 @@ function App() {
             <div className="overflow-hidden max-h-[35rem]">
                 <img alt="background" src="/background2.jpg" className="w-screen brightness-50" style={{transform: `translateY(${scrollY/30}rem)`}}/>
             </div>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="characters" element={<CharactersPage />} />
-                <Route path="comics" element={<ComicsPage />} />
-                <Route path="series" element={<SeriesPage />} />
-            </Routes>
-            <div
-                onClick={scrollToTop}
-                title="Scroll to top"
-                className="fixed bottom-0 right-0 mb-6 mr-4 z-10 text-5xl cursor-pointer text-gray-500 hover:text-gray-300 transition duration-150"
-            >
-                <ArrowUpCircleIcon className="w-16 h-16"/>
+            <div className="p-6">
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="characters" element={<CharactersPage />} />
+                    <Route path="comics" element={<ComicsPage />} />
+                    <Route path="series" element={<SeriesPage />} />
+                </Routes>
             </div>
+            {scrollY > 0 && (
+                <div
+                    onClick={scrollToTop}
+                    title="Scroll to top"
+                    className="fixed bottom-0 right-0 mb-6 mr-4 z-10 text-5xl cursor-pointer text-gray-500 hover:text-gray-300 transition duration-150"
+                >
+                    <ArrowUpCircleIcon className="w-16 h-16"/>
+                </div>
+            )}
         </div>
     );
 }
