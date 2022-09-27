@@ -16,12 +16,10 @@ export default function CharactersContextProvider({children}: PropsWithChildren<
     const [characters, setCharacters] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() =>{console.log(characters)}, [characters]);
-
     useEffect(() => {
-        axios.get(BASE_URL + `/v1/public/characters`,{params: {apikey: API_KEY, hash: API_HASH, ts: TIMESTAMP}})
+        axios.get(BASE_URL + `/v1/public/characters`,{params: {apikey: API_KEY, hash: API_HASH, ts: TIMESTAMP, series: "24229"}})
             .then(({data}) => {
-                setCharacters(prev => data.data.results);
+                setCharacters(data.data.results);
             })
             .catch(console.error)
             .finally(() => setLoading(false))
