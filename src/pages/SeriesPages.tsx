@@ -23,7 +23,13 @@ export default function SeriesPage(){
                 <>
                     <List>
                         {series.map(serie => (
-                            <Card key={serie.id} name={serie.title} thumbnail={serie.thumbnail} to="/"/>
+                            <Card
+                                key={serie.id}
+                                name={serie.title}
+                                thumbnail={serie.thumbnail}
+                                to={`/series/${serie.id}`}
+                                state={serie}
+                            />
                         ))}
                     </List>
                     {pagination && (

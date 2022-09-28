@@ -1,10 +1,10 @@
 import {Character} from "../models/Character";
-import {PropsWithChildren, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useLocation, useParams } from "react-router-dom";
 import {request} from "../helpers/RequestHelper";
 import Spinner from "../components/Spinner";
 import {getThumbnailPath} from "../helpers/ThumbnailHelper";
-import ItemList from "../components/ItemList";
+import ItemList, {NoValue} from "../components/ItemList";
 
 export default function CharacterPage(){
     const [loading, setLoading] = useState(false);
@@ -27,11 +27,12 @@ export default function CharacterPage(){
     },[id, character]);
 
     if(!character || loading) return <Spinner text="Fetching character"/>;
+
     return (
         <div className="lg:mx-24">
-            <div className="flex flex-wrap lg:flex-nowrap">
-                <div className="overflow-hidden rounded-full max-h-[15rem] max-w-[15rem] mx-auto">
-                    <img className="rounded-full" src={getThumbnailPath(character.thumbnail)}/>
+            <div className="block lg:flex">
+                <div className="overflow-hidden rounded-full max-h-[15rem] max-w-[15rem] mx-auto lg:mx-0">
+                    <img alt={character.name} className="rounded-full aspect-square" src={getThumbnailPath(character.thumbnail)}/>
                 </div>
                 <div className="mt-4 lg:mt-0">
                     <table className="ml-8 text-left item-table text-xl">
@@ -41,7 +42,7 @@ export default function CharacterPage(){
                             <td>{character.name}</td>
                         </tr>
                         <tr>
-                            <th>Description</th>
+                            <th className="flex"><span className="mb-auto">Description</span></th>
                             <td>{character.description ? character.description : (<NoValue>No description</NoValue>)}</td>
                         </tr>
                         </tbody>
@@ -52,7 +53,7 @@ export default function CharacterPage(){
                 <ItemList title={`Comics (${character.comics.items.length})`}>
                     <ul>
                         {character.comics.items.map((comic, index) => (
-                            <li key={comic.name + index} className="mt-1">
+                            <li key={comic.name + index} className="mb-1">
                                 {comic.name}
                             </li>
                         ))}
@@ -62,7 +63,7 @@ export default function CharacterPage(){
                 <ItemList title={`Series (${character.series.items.length})`}>
                     <ul>
                         {character.series.items.map((serie,index) => (
-                            <li key={serie.name + index} className="mt-1">
+                            <li key={serie.name + index} className="mb-1">
                                 {serie.name}
                             </li>
                         ))}
@@ -72,8 +73,4 @@ export default function CharacterPage(){
             </div>
         </div>
     );
-}
-
-function NoValue({children}: PropsWithChildren<{}>){
-    return <span className="italic">{children}</span>;
 }

@@ -11,3 +11,7 @@ export default function ItemList({children, title}: PropsWithChildren<{title: st
         </div>
     );
 }
+
+export function NoValue({children}: PropsWithChildren<{}>){
+    return <span className="italic opacity-75">{children}</span>;
+}

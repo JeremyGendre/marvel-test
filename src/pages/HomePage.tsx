@@ -43,8 +43,14 @@ export default function HomePage(){
             <Row title="Comics" link="/comics">
                 {loadingComics ? (<Spinner text="Fetching comics..."/>) : (
                     <>
-                        {comics.slice(0,6).map(comics => (
-                            <Card key={comics.id} name={comics.title} thumbnail={comics.thumbnail} to="/"/>
+                        {comics.slice(0,6).map(comic => (
+                            <Card
+                                key={comic.id}
+                                name={comic.title}
+                                thumbnail={comic.thumbnail}
+                                to={`/comics/${comic.id}`}
+                                state={comic}
+                            />
                         ))}
                     </>
                 )}
@@ -53,7 +59,13 @@ export default function HomePage(){
                 {loadingSeries ? (<Spinner text="Fetching series..."/>) : (
                     <>
                         {series.slice(0,6).map(serie => (
-                            <Card key={serie.id} name={serie.title} thumbnail={serie.thumbnail} to="/"/>
+                            <Card
+                                key={serie.id}
+                                name={serie.title}
+                                thumbnail={serie.thumbnail}
+                                to={`/series/${serie.id}`}
+                                state={serie}
+                            />
                         ))}
                     </>
                 )}

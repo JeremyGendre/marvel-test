@@ -23,7 +23,13 @@ export default function ComicsPage(){
                 <>
                     <List>
                         {comics.map(comic => (
-                            <Card key={comic.id} name={comic.title} thumbnail={comic.thumbnail} to="/"/>
+                            <Card
+                                key={comic.id}
+                                name={comic.title}
+                                thumbnail={comic.thumbnail}
+                                to={`/comics/${comic.id}`}
+                                state={comic}
+                            />
                         ))}
                     </List>
                     {pagination && (
