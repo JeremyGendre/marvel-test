@@ -2,7 +2,6 @@ import {createContext, PropsWithChildren, useCallback, useContext, useEffect, us
 import {Character} from "../models/Character";
 import {getPaginationValues, request} from "../helpers/RequestHelper";
 import {DEFAULT_PAGINATION, PaginationType} from "../models/Pagination";
-import usePagination from "../helpers/hooks/usePagination";
 
 interface CharactersContextType {
     characters: Array<Character>;

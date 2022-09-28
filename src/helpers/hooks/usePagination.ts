@@ -2,6 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import {useCallback, useMemo} from "react";
 import {DEFAULT_LIMIT} from "../../models/Pagination";
 
+// hook permettant d'utiliser la pagination dans l'url
+// ex : je veux voir les comics de la page 15. Avoir la pagination dans l'url permet de retourner directement à la bonne page si on a fermé l'onglet par exemple
 export default function usePagination(){
     const location = useLocation();
     const navigate = useNavigate();

@@ -1,10 +1,13 @@
-import {createContext, PropsWithChildren, useContext, useEffect, useState} from "react";
+import {createContext, PropsWithChildren, useCallback, useContext, useEffect, useState} from "react";
 import {Comic} from "../models/Comic";
-import {request} from "../helpers/RequestHelper";
+import {getPaginationValues, request} from "../helpers/RequestHelper";
+import {DEFAULT_PAGINATION, PaginationType} from "../models/Pagination";
 
 interface ComicsContextType {
     comics: Array<Comic>;
     loading: boolean;
+    fetchComics: (params?: object) => void,
+    pagination: PaginationType
 }
 
 const ComicsContext = createContext<ComicsContextType>(undefined!);
@@ -13,11 +16,15 @@ export const useComics = () => useContext(ComicsContext);
 
 export default function ComicsContextProvider({children}: PropsWithChildren<{}>){
     const [comics, setComics] = useState([]);
+    const [pagination, setPagination] = useState<PaginationType>(DEFAULT_PAGINATION);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        request('/v1/public/comics')
+    // méthode qui va pouvoir être appelée notamment avec les offset et la limite pour la pagination
+    const fetchComics = useCallback((params: object = {}) => {
+        setLoading(true);
+        request('/v1/public/comics',{...params})
             .then(({data}) => {
+                setPagination(getPaginationValues(data.data));
                 setComics(data.data.results);
             })
             .catch(console.error)
@@ -25,7 +32,7 @@ export default function ComicsContextProvider({children}: PropsWithChildren<{}>)
     },[]);
 
     return (
-        <ComicsContext.Provider value={{ comics, loading }}>
+        <ComicsContext.Provider value={{ comics, loading, pagination, fetchComics }}>
             {children}
         </ComicsContext.Provider>
     );

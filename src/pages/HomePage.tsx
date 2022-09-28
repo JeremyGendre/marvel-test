@@ -8,12 +8,20 @@ import {Link} from "react-router-dom";
 
 export default function HomePage(){
     const {characters, loading, fetchCharacters} = useCharacters();
-    const {comics, loading: loadingComics} = useComics();
-    const {series, loading: loadingSeries} = useSeries();
+    const {comics, loading: loadingComics, fetchComics} = useComics();
+    const {series, loading: loadingSeries, fetchSeries} = useSeries();
 
     useEffect(() => {
         fetchCharacters();
     },[fetchCharacters]);
+
+    useEffect(() => {
+        fetchComics();
+    },[fetchComics]);
+
+    useEffect(() => {
+        fetchSeries();
+    },[fetchSeries]);
 
     return (
         <div className="flex flex-col space-y-16">
