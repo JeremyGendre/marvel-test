@@ -27,12 +27,12 @@ export default function CharacterPage(){
 
     if(!character || loading) return <Spinner text="Fetching character"/>;
     return (
-        <div className="mx-24">
-            <div className="flex">
-                <div className="rounded-full max-h-[15rem] max-w-[15rem] overflow-hidden">
-                    <img src={getThumbnailPath(character.thumbnail)}/>
+        <div className="lg:mx-24">
+            <div className="flex flex-wrap lg:flex-nowrap">
+                <div className="overflow-hidden rounded-full max-h-[15rem] max-w-[15rem] mx-auto">
+                    <img className="rounded-full" src={getThumbnailPath(character.thumbnail)}/>
                 </div>
-                <div>
+                <div className="mt-4 lg:mt-0">
                     <table className="ml-8 text-left item-table text-xl">
                         <tbody>
                         <tr>
@@ -54,7 +54,7 @@ export default function CharacterPage(){
                     <div>
                         <ul>
                             {character.comics.items.map(comic => (
-                                <li key={comic.name}>
+                                <li key={comic.name} className="mt-1">
                                     {comic.name}
                                 </li>
                             ))}
@@ -68,7 +68,7 @@ export default function CharacterPage(){
                     <div>
                         <ul>
                             {character.series.items.map(serie => (
-                                <li key={serie.name}>
+                                <li key={serie.name} className="mt-1">
                                     {serie.name}
                                 </li>
                             ))}
