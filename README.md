@@ -4,6 +4,8 @@ Bienvenue sur ce projet Marvel :D
 
 *Réalisé par Jérémy Gendre*
 
+Application déployée sur heroku : https://jg-marvel-api-test.herokuapp.com/
+
 ## Installation
 
 - Copiez-collez le fichier `.env` et créez un fichier `.env.local` dans lequel vous renseignez  les valeurs de `REACT_APP_API_KEY` (clé publique de l'API Marvel) et `REACT_APP_HASH` (le hash créé à partir des clés publique et privée et du timestamp (1 ici, comme indiqué dans le fichier `src/config/config.ts`))
