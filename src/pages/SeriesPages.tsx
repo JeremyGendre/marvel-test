@@ -1,24 +1,45 @@
 import {useCharacters} from "../context/CharactersContext";
 import usePagination from "../helpers/hooks/usePagination";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import PageTitle from "../PageTitle";
 import Spinner from "../components/Spinner";
 import List from "../components/List";
 import Card from "../components/Card";
 import Pagination from "../components/Pagination";
 import {useSeries} from "../context/SeriesContext";
+import useDebounceValue from "../helpers/hooks/useDebounceValue";
+import Input from "../components/Input";
 
 export default function SeriesPage(){
     const { pagination, series, loading, fetchSeries } = useSeries();
     const paginationInfos = usePagination();
+    const [searchValue, setSearchValue] = useState('');
+    const debouncedValue = useDebounceValue(searchValue);
 
     useEffect(() => {
-        fetchSeries({offset: (paginationInfos.page - 1) * paginationInfos.limit, limit: paginationInfos.limit});
-    },[paginationInfos.page, paginationInfos.limit]);
+        let params:any = {offset: (paginationInfos.page - 1) * paginationInfos.limit, limit: paginationInfos.limit};
+        if(debouncedValue){
+            params.titleStartsWith = debouncedValue;
+        }
+        fetchSeries(params);
+    },[paginationInfos.page, paginationInfos.limit, debouncedValue]);
 
     return (
         <div>
-            <PageTitle>Marvel series</PageTitle>
+            <PageTitle>
+                <div className="flex justify-between">
+                    <div>Marvel Series</div>
+                    <div>
+                        <Input
+                            className="text-lg"
+                            type="text"
+                            placeholder="Search..."
+                            value={searchValue}
+                            onChange={e => setSearchValue(e.target.value)}
+                        />
+                    </div>
+                </div>
+            </PageTitle>
             {loading ? (<Spinner text="Fetching series"/>) : (
                 <>
                     <List>
