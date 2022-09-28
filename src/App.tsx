@@ -12,12 +12,16 @@ import CharacterPage from "./pages/CharacterPage";
 import ComicPage from "./pages/ComicPage";
 import SeriePage from "./pages/SeriePage";
 
+// simple fonction de scroll top
 const scrollToTop = () => {
     scroll.scrollToTop();
 };
 
 function App() {
+    //on track le scrollY pour afficher ou non le boutton pour remonter en haut
     const { scrollY } = useScroll();
+
+    // ici on gère nos routes et la structure globale de notre app, avec le header, les composants en fonction de la route, etc.
     return (
         <div>
             <Header/>

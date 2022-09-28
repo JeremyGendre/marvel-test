@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import useDebounce from "./useDebounce";
 
+// simplifie l'utilisation du hook useDebounce
 export default function useDebounceValue(value = '') {
     const [debouncedValue, setDebouncedValue] = useState("");
 

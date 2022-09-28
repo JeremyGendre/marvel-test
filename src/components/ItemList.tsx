@@ -1,5 +1,6 @@
 import {PropsWithChildren} from "react";
 
+// list affichée dans les "single pages" (comme la page d'un seul personnage, d'une seule série, etc.)
 export default function ItemList({children, title}: PropsWithChildren<{title: string}>){
     return (
         <div>
@@ -12,6 +13,7 @@ export default function ItemList({children, title}: PropsWithChildren<{title: st
     );
 }
 
+// gestion des valeurs nulles ou vides
 export function NoValue({children}: PropsWithChildren<{}>){
     return <span className="italic opacity-75">{children}</span>;
 }

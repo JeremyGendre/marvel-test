@@ -5,6 +5,7 @@ import ChevronLeftIcon from "./icons/ChevronLeftIcon";
 import ChevronRightIcon from "./icons/ChevronRightIcon";
 import ChevronDoubleRightIcon from "./icons/ChevronDoubleRightIcon";
 
+// une action par boutton de pagination
 interface Props {
     pagination: PaginationType,
     onFirst?: () => void;

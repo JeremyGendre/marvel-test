@@ -5,6 +5,10 @@ type ScrollData = {
     scrollY: number
 };
 
+/**
+ * Un des hook que j'ai créé, que je réutilise ici
+ * @see https://github.com/JeremyGendre/react-custom-hooks#usescroll
+ */
 export default function useScroll(){
     const [data, setData] = useState<ScrollData>({
         scrollX: 0,

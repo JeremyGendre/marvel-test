@@ -10,6 +10,8 @@ import SeriesContextProvider from "./context/SeriesContext";
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
+
+// on a ici notre composant App et tous les contextes l'englobant
 root.render(
     <React.StrictMode>
         <BrowserRouter>

@@ -5,11 +5,14 @@ import {PropsWithChildren, useEffect} from "react";
 import {useComics} from "../context/ComicsContext";
 import {useSeries} from "../context/SeriesContext";
 import {Link} from "react-router-dom";
+import Error from "../components/Error";
 
 export default function HomePage(){
-    const {characters, loading, fetchCharacters} = useCharacters();
-    const {comics, loading: loadingComics, fetchComics} = useComics();
-    const {series, loading: loadingSeries, fetchSeries} = useSeries();
+    const {characters, loading, fetchCharacters, error: charError} = useCharacters();
+    const {comics, loading: loadingComics, fetchComics, error: comicError} = useComics();
+    const {series, loading: loadingSeries, fetchSeries, error: serieError} = useSeries();
+
+    // on fetch les différents pré-listing
 
     useEffect(() => {
         fetchCharacters();
@@ -23,6 +26,7 @@ export default function HomePage(){
         fetchSeries();
     },[fetchSeries]);
 
+    // on affiche les 6 premiers résultats de chaque listing et on gère les erreurs
     return (
         <div className="flex flex-col space-y-16">
             <Row title="Characters" link="/characters">
@@ -39,6 +43,7 @@ export default function HomePage(){
                         ))}
                     </>
                 )}
+                {charError && <Error>{charError}</Error>}
             </Row>
             <Row title="Comics" link="/comics">
                 {loadingComics ? (<Spinner text="Fetching comics..."/>) : (
@@ -54,6 +59,7 @@ export default function HomePage(){
                         ))}
                     </>
                 )}
+                {comicError && <Error>{comicError}</Error>}
             </Row>
             <Row title="Series" link="/series">
                 {loadingSeries ? (<Spinner text="Fetching series..."/>) : (
@@ -69,6 +75,7 @@ export default function HomePage(){
                         ))}
                     </>
                 )}
+                {serieError && <Error>{serieError}</Error>}
             </Row>
         </div>
     );

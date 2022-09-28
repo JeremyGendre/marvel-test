@@ -1,6 +1,6 @@
 import {useCharacters} from "../context/CharactersContext";
 import Card from "../components/Card";
-import PageTitle from "../PageTitle";
+import PageTitle from "../components/PageTitle";
 import Spinner from "../components/Spinner";
 import List from "../components/List";
 import Pagination from "../components/Pagination";
@@ -8,20 +8,26 @@ import usePagination from "../helpers/hooks/usePagination";
 import {useEffect, useState} from "react";
 import Input from "../components/Input";
 import useDebounceValue from "../helpers/hooks/useDebounceValue";
+import Error from "../components/Error";
 
 export default function CharactersPage(){
-    const { pagination, characters, loading, fetchCharacters } = useCharacters();
+    const { pagination, characters, loading, fetchCharacters, error } = useCharacters();
     const paginationInfos = usePagination();
     const [searchValue, setSearchValue] = useState('');
+
+    //on debounce la valeur pour faire le moins d'appels à l'API possible
     const debouncedValue = useDebounceValue(searchValue);
 
     useEffect(() => {
         let params:any = {offset: (paginationInfos.page - 1) * paginationInfos.limit, limit: paginationInfos.limit};
-        if(debouncedValue){
+        if(debouncedValue){ // si ya une valeur rentrée, on l'ajoute aux params de recherche
             params.nameStartsWith = debouncedValue;
         }
         fetchCharacters(params);
     },[paginationInfos.page, paginationInfos.limit, debouncedValue]);
+
+    // on gère les erreurs
+    if(error) return (<Error>{error}</Error>);
 
     return (
         <div>

@@ -5,10 +5,15 @@ import Spinner from "../components/Spinner";
 import {getThumbnailPath} from "../helpers/ThumbnailHelper";
 import ItemList, {NoValue} from "../components/ItemList";
 import {Comic} from "../models/Comic";
+import Error from "../components/Error";
 
 export default function ComicPage(){
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    // id du comic
     let { id } = useParams();
+
+    // on récupère l'objet Comic pour éviter, s'il existe, d'aller le fetch à l'API
     const {state} = useLocation();
     const [comic, setComic] = useState<Comic|undefined>(state);
 
@@ -21,10 +26,15 @@ export default function ComicPage(){
                         setComic(data.data.results[0]);
                     }
                 })
-                .catch(console.error)
+                .catch(error => { // on gère les erreurs
+                    setError(error.response.data ? error.response.data.status : error.message);
+                })
                 .finally(() => {setLoading(false)})
         }
     },[id, comic]);
+
+    // s'il y a une erreur on l'affiche
+    if(error) return (<Error>{error}</Error>);
 
     if(!comic || loading) return <Spinner text="Fetching comic"/>;
 

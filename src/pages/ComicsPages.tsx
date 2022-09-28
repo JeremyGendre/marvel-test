@@ -1,7 +1,6 @@
-import {useCharacters} from "../context/CharactersContext";
 import usePagination from "../helpers/hooks/usePagination";
 import {useEffect, useState} from "react";
-import PageTitle from "../PageTitle";
+import PageTitle from "../components/PageTitle";
 import Spinner from "../components/Spinner";
 import List from "../components/List";
 import Card from "../components/Card";
@@ -9,20 +8,26 @@ import Pagination from "../components/Pagination";
 import {useComics} from "../context/ComicsContext";
 import useDebounceValue from "../helpers/hooks/useDebounceValue";
 import Input from "../components/Input";
+import Error from "../components/Error";
 
 export default function ComicsPage(){
-    const { pagination, comics, loading, fetchComics } = useComics();
+    const { pagination, comics, loading, fetchComics, error } = useComics();
     const paginationInfos = usePagination();
     const [searchValue, setSearchValue] = useState('');
+
+    //on debounce la valeur pour faire le moins d'appels à l'API possible
     const debouncedValue = useDebounceValue(searchValue);
 
     useEffect(() => {
         let params:any = {offset: (paginationInfos.page - 1) * paginationInfos.limit, limit: paginationInfos.limit};
-        if(debouncedValue){
+        if(debouncedValue){// si ya une valeur rentrée, on l'ajoute aux params de recherche
             params.titleStartsWith = debouncedValue;
         }
         fetchComics(params);
     },[paginationInfos.page, paginationInfos.limit, debouncedValue]);
+
+    // on gère les erreurs
+    if(error) return (<Error>{error}</Error>);
 
     return (
         <div>

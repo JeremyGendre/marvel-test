@@ -32,6 +32,7 @@ export default function Header(){
     // au changement dans l'url, on update le lien actif
     useEffect(() => {checkLocation(location)}, [location]);
 
+    // on gère aussi l'opacité du background en fonction du scroll
     return (
         <header className="text-white text-xl sticky top-0 z-50">
             <nav className="top-0 left-0 right-0 py-4 flex justify-center absolute" style={{backgroundColor:`rgba(0,0,0,${(scrollY/8)/100})`}}>

@@ -5,14 +5,20 @@ import {request} from "../helpers/RequestHelper";
 import Spinner from "../components/Spinner";
 import {getThumbnailPath} from "../helpers/ThumbnailHelper";
 import ItemList, {NoValue} from "../components/ItemList";
+import Error from "../components/Error";
 
 export default function CharacterPage(){
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    // id du personnage
     let { id } = useParams();
+
+    // on récupère l'objet Character pour éviter, s'il existe, d'aller le fetch à l'API
     const {state} = useLocation();
     const [character, setCharacter] = useState<Character|undefined>(state);
 
     useEffect(() => {
+        // si on a pas d'objet Character, on va le fetch avec l'ID dans l'url
         if(!character && !!id){
             setLoading(true);
             request(`/v1/public/characters/${id}`)
@@ -21,10 +27,15 @@ export default function CharacterPage(){
                         setCharacter(data.data.results[0]);
                     }
                 })
-                .catch(console.error)
+                .catch(error => { // on gère les erreurs
+                    setError(error.response.data ? error.response.data.status : error.message);
+                })
                 .finally(() => {setLoading(false)})
         }
     },[id, character]);
+
+    // s'il y a une erreur on l'affiche
+    if(error) return (<Error>{error}</Error>);
 
     if(!character || loading) return <Spinner text="Fetching character"/>;
 
