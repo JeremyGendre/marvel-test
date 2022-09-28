@@ -57,5 +57,5 @@ Si je devais aller plus loin, voici quelques pistes sur lesquelles j'avancerais 
 - Gérer plus d'éléments venant de l'API Marvel (events, stories, etc.)
 - Continuer en profondeur les fiches de détails de chaque "item" (personnage, comic, etc.)
 - Mieux gérer le cache.
-- Faire une PWA (progressive web app), notamment grâçe au point précédent.
+- Faire une PWA (progressive web app), notamment grâce au point précédent.
 
