@@ -18,12 +18,12 @@ export default function SeriesPage(){
 
     return (
         <div>
-            <PageTitle>All Marvel series</PageTitle>
+            <PageTitle>Marvel series</PageTitle>
             {loading ? (<Spinner text="Fetching series"/>) : (
                 <>
                     <List>
                         {series.map(serie => (
-                            <Card key={serie.id} name={serie.title} thumbnail={serie.thumbnail} link="/"/>
+                            <Card key={serie.id} name={serie.title} thumbnail={serie.thumbnail} to="/"/>
                         ))}
                     </List>
                     {pagination && (

@@ -29,7 +29,7 @@ export default function HomePage(){
                 {loading ? (<Spinner text="Fetching characters..."/>) : (
                     <>
                         {characters.slice(0,6).map(character => (
-                            <Card key={character.id} name={character.name} thumbnail={character.thumbnail} link="/"/>
+                            <Card key={character.id} name={character.name} thumbnail={character.thumbnail} to="/"/>
                         ))}
                     </>
                 )}
@@ -38,7 +38,7 @@ export default function HomePage(){
                 {loadingComics ? (<Spinner text="Fetching comics..."/>) : (
                     <>
                         {comics.slice(0,6).map(comics => (
-                            <Card key={comics.id} name={comics.title} thumbnail={comics.thumbnail} link="/"/>
+                            <Card key={comics.id} name={comics.title} thumbnail={comics.thumbnail} to="/"/>
                         ))}
                     </>
                 )}
@@ -47,7 +47,7 @@ export default function HomePage(){
                 {loadingSeries ? (<Spinner text="Fetching series..."/>) : (
                     <>
                         {series.slice(0,6).map(serie => (
-                            <Card key={serie.id} name={serie.title} thumbnail={serie.thumbnail} link="/"/>
+                            <Card key={serie.id} name={serie.title} thumbnail={serie.thumbnail} to="/"/>
                         ))}
                     </>
                 )}

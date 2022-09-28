@@ -17,12 +17,18 @@ export default function CharactersPage(){
 
     return (
         <div>
-            <PageTitle>All Marvel characters</PageTitle>
+            <PageTitle>Marvel characters</PageTitle>
             {loading ? (<Spinner text="Fetching characters"/>) : (
                 <>
                     <List>
                         {characters.map(character => (
-                            <Card key={character.id} name={character.name} thumbnail={character.thumbnail} link="/"/>
+                            <Card
+                                key={character.id}
+                                name={character.name}
+                                thumbnail={character.thumbnail}
+                                to={`/character/${character.id}`}
+                                state={character}
+                            />
                         ))}
                     </List>
                     {pagination && (

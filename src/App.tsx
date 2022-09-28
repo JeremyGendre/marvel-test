@@ -8,6 +8,7 @@ import SeriesPage from "./pages/SeriesPages";
 import { animateScroll as scroll} from 'react-scroll';
 import ArrowUpCircleIcon from "./components/icons/ArrowUpCircleIcon";
 import useScroll from "./helpers/hooks/useScroll";
+import CharacterPage from "./pages/CharacterPage";
 
 const scrollToTop = () => {
     scroll.scrollToTop();
@@ -27,6 +28,7 @@ function App() {
                     <Route path="characters" element={<CharactersPage />} />
                     <Route path="comics" element={<ComicsPage />} />
                     <Route path="series" element={<SeriesPage />} />
+                    <Route path="character/:id" element={<CharacterPage />} />
                 </Routes>
             </div>
             {scrollY > 0 && (
