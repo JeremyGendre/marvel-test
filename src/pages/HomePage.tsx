@@ -29,7 +29,13 @@ export default function HomePage(){
                 {loading ? (<Spinner text="Fetching characters..."/>) : (
                     <>
                         {characters.slice(0,6).map(character => (
-                            <Card key={character.id} name={character.name} thumbnail={character.thumbnail} to="/"/>
+                            <Card
+                                key={character.id}
+                                name={character.name}
+                                thumbnail={character.thumbnail}
+                                to={`/characters/${character.id}`}
+                                state={character}
+                            />
                         ))}
                     </>
                 )}

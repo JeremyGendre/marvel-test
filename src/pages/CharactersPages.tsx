@@ -26,7 +26,7 @@ export default function CharactersPage(){
                                 key={character.id}
                                 name={character.name}
                                 thumbnail={character.thumbnail}
-                                to={`/character/${character.id}`}
+                                to={`/characters/${character.id}`}
                                 state={character}
                             />
                         ))}

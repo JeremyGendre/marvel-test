@@ -28,7 +28,7 @@ function App() {
                     <Route path="characters" element={<CharactersPage />} />
                     <Route path="comics" element={<ComicsPage />} />
                     <Route path="series" element={<SeriesPage />} />
-                    <Route path="character/:id" element={<CharacterPage />} />
+                    <Route path="characters/:id" element={<CharacterPage />} />
                 </Routes>
             </div>
             {scrollY > 0 && (

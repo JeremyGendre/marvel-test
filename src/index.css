@@ -14,3 +14,7 @@
 .header-link:hover:after, .header-link-active:after{
     width: 100%;
 }
+
+.item-table td, .item-table th{
+    padding: 0.5em;
+}
