@@ -4,6 +4,7 @@ import {useLocation, useParams } from "react-router-dom";
 import {request} from "../helpers/RequestHelper";
 import Spinner from "../components/Spinner";
 import {getThumbnailPath} from "../helpers/ThumbnailHelper";
+import ItemList from "../components/ItemList";
 
 export default function CharacterPage(){
     const [loading, setLoading] = useState(false);
@@ -48,34 +49,26 @@ export default function CharacterPage(){
                 </div>
             </div>
             <div className="mt-8 flex flex-col space-y-8">
-                <div>
-                    <div className="font-bold text-2xl">Comics</div>
-                    <hr className="my-2 border-red-500"/>
-                    <div>
-                        <ul>
-                            {character.comics.items.map((comic, index) => (
-                                <li key={comic.name + index} className="mt-1">
-                                    {comic.name}
-                                </li>
-                            ))}
-                            {character.series.items.length === 0 && (<NoValue>No associated comic</NoValue>)}
-                        </ul>
-                    </div>
-                </div>
-                <div>
-                    <div className="font-bold text-2xl">Series</div>
-                    <hr className="my-2 border-red-500"/>
-                    <div>
-                        <ul>
-                            {character.series.items.map((serie,index) => (
-                                <li key={serie.name + index} className="mt-1">
-                                    {serie.name}
-                                </li>
-                            ))}
-                            {character.series.items.length === 0 && (<NoValue>No associated serie</NoValue>)}
-                        </ul>
-                    </div>
-                </div>
+                <ItemList title={`Comics (${character.comics.items.length})`}>
+                    <ul>
+                        {character.comics.items.map((comic, index) => (
+                            <li key={comic.name + index} className="mt-1">
+                                {comic.name}
+                            </li>
+                        ))}
+                        {character.series.items.length === 0 && (<NoValue>No associated comic</NoValue>)}
+                    </ul>
+                </ItemList>
+                <ItemList title={`Series (${character.series.items.length})`}>
+                    <ul>
+                        {character.series.items.map((serie,index) => (
+                            <li key={serie.name + index} className="mt-1">
+                                {serie.name}
+                            </li>
+                        ))}
+                        {character.series.items.length === 0 && (<NoValue>No associated serie</NoValue>)}
+                    </ul>
+                </ItemList>
             </div>
         </div>
     );
