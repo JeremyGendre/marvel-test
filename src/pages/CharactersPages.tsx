@@ -6,6 +6,7 @@ import List from "../components/List";
 import Pagination from "../components/Pagination";
 import usePagination from "../helpers/hooks/usePagination";
 import {useEffect} from "react";
+import Input from "../components/Input";
 
 export default function CharactersPage(){
     const { pagination, characters, loading, fetchCharacters } = useCharacters();
@@ -17,7 +18,12 @@ export default function CharactersPage(){
 
     return (
         <div>
-            <PageTitle>Marvel characters</PageTitle>
+            <PageTitle>
+                <div className="flex justify-between">
+                    <div>Marvel characters</div>
+                    <div><Input className="text-lg" type="text" placeholder="Search..."/></div>
+                </div>
+            </PageTitle>
             {loading ? (<Spinner text="Fetching characters"/>) : (
                 <>
                     <List>
