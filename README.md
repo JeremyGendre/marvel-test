@@ -29,7 +29,7 @@ Concernant la structure de fichier que j'ai appliqué :
 ## Réalisation
 
 J'ai voulu aller un peu plus loin que le sujet demandé. J'ai géré 3 listings différents : Personnages (Characters), Comics (Comics) et Séries (Series).
-L'application est en anglais.
+L'application est en anglais. Je suis parti sur une partie front car l'API Marvel est utilisable telle quelle. Une autre solution aurait pu être une surcouche API à celle de Marvel.
  
 Il y a 4 lien dans le Header : 
 
@@ -47,6 +47,9 @@ Ensuite, que ce soit sur la page Home ou et les pages de listing, on retrouve un
 La page de détail reprend certains éléments pertinents de l'élément choisi (nom, description, image, etc.)
 
 J'ai géré les différentes erreurs pouvant survenir lors des requêtes et affiché un message d'erreur dans ce cas.
+
+Temps approximatif passé sur la réalisation du projet : plus ou moins une journée.
+Je n'ai pas rencontré de problèmes significatifs.
 
 ## Pour aller plus loin
 
