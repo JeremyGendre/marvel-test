@@ -35,7 +35,7 @@ export default function Header(){
     return (
         <header className="text-white text-xl sticky top-0 z-50">
             <nav className="top-0 left-0 right-0 py-4 flex justify-center absolute" style={{backgroundColor:`rgba(0,0,0,${(scrollY/8)/100})`}}>
-                <ul className="flex space-x-14">
+                <ul className="flex flex-wrap space-x-4 md:space-x-14">
                     {links.map(link => (
                         <HeaderLink key={link.path} to={link.path} active={link.path === activeLink}>{link.title}</HeaderLink>
                     ))}

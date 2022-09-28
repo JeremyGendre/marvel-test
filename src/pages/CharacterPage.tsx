@@ -53,8 +53,8 @@ export default function CharacterPage(){
                     <hr className="my-2 border-red-500"/>
                     <div>
                         <ul>
-                            {character.comics.items.map(comic => (
-                                <li key={comic.name} className="mt-1">
+                            {character.comics.items.map((comic, index) => (
+                                <li key={comic.name + index} className="mt-1">
                                     {comic.name}
                                 </li>
                             ))}
@@ -67,8 +67,8 @@ export default function CharacterPage(){
                     <hr className="my-2 border-red-500"/>
                     <div>
                         <ul>
-                            {character.series.items.map(serie => (
-                                <li key={serie.name} className="mt-1">
+                            {character.series.items.map((serie,index) => (
+                                <li key={serie.name + index} className="mt-1">
                                     {serie.name}
                                 </li>
                             ))}
