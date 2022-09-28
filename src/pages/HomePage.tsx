@@ -1,15 +1,19 @@
 import {useCharacters} from "../context/CharactersContext";
 import Card from "../components/Card";
 import Spinner from "../components/Spinner";
-import {PropsWithChildren} from "react";
+import {PropsWithChildren, useEffect} from "react";
 import {useComics} from "../context/ComicsContext";
 import {useSeries} from "../context/SeriesContext";
 import {Link} from "react-router-dom";
 
 export default function HomePage(){
-    const {characters, loading} = useCharacters();
+    const {characters, loading, fetchCharacters} = useCharacters();
     const {comics, loading: loadingComics} = useComics();
     const {series, loading: loadingSeries} = useSeries();
+
+    useEffect(() => {
+        fetchCharacters();
+    },[fetchCharacters]);
 
     return (
         <div className="flex flex-col space-y-16">
