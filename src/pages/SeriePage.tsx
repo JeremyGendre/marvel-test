@@ -27,7 +27,7 @@ export default function SeriePage(){
     },[id, serie]);
 
     if(!serie || loading) return <Spinner text="Fetching serie"/>;
-    console.log(serie);
+
     return (
         <div className="lg:mx-24">
             <div className="flex flex-wrap lg:flex-nowrap">
